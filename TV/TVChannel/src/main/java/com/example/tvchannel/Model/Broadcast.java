@@ -1,17 +1,9 @@
 package com.example.tvchannel.Model;
 
-import com.example.tvchannel.dao.DowDAO;
-import com.example.tvchannel.repository.DOWRepository;
-import com.example.tvchannel.repository.FilmsRepository;
-import com.example.tvchannel.repository.NewsRepository;
-import com.example.tvchannel.repository.ShowRepository;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.time.LocalTime;
 
 @Schema(description = "Broadcast")
@@ -28,13 +20,14 @@ public class Broadcast {
     private LocalTime broadcast_time;
 
 
-    public Broadcast(String day_of_week, String content_name, LocalTime broadcast_time) {
+    public Broadcast() {
+    }
+
+    public Broadcast(Long id, String day_of_week, String content_name, LocalTime broadcast_time) {
+        this.id = id;
         this.day_of_week = day_of_week;
         this.content_name = content_name;
         this.broadcast_time = broadcast_time;
-    }
-
-    public Broadcast() {
     }
 
     public Long getId() {
