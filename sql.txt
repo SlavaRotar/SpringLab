@@ -1,0 +1,62 @@
+create table cartoons
+(
+    id   bigint not null
+        constraint cartoons_pkey
+            primary key,
+    name varchar(255)
+);
+
+create table dow
+(
+    id      bigint not null
+        constraint dow_pkey
+            primary key,
+    day    varchar(255)
+
+);
+
+create table employee
+(
+    id      bigint not null
+        constraint employee_pkey
+            primary key,
+    name    varchar(255),
+    position varchar(255),
+    dob date not null
+);
+
+create table films
+(
+    id      bigint not null
+        constraint films_pkey
+            primary key,
+    name    varchar(255)
+);
+
+create table license
+(
+    id      bigint not null
+        constraint license_pkey
+            primary key,
+    name    varchar(255),
+    date date not null ,
+    licensedate bigint
+);
+
+create table news
+(
+    id      bigint not null
+        constraint news_pkey
+            primary key,
+    name    varchar(255),
+    day varchar(255),
+    airtime time
+);
+
+create table show
+(
+    id      bigint not null
+        constraint show_pkey
+            primary key,
+    name    varchar(255)
+);

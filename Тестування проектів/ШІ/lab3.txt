@@ -1,0 +1,50 @@
+% Діагностика несправностей технічного пристрою (у цьому випадку - смартфон).
+
+charging_port_failure(X):- phone_doesnt_charge(X); damaged_charging_port(X).
+battery_failure(X):- low_battery_life(X); phone_is_overheating(X).
+side_buttons_failure(X):- buttons_unresponsive(X).
+damaged_camera_lens(X):- photos_looking_hazy(X).
+
+os_failure(X):- hardware_is_ok_but_phone_doesnt_work(X).
+phone_doesnt_recognize_microsd(X):- microsd_doesnt_work(X).
+full_storage_space(X):- app_crashes(X); app_freezes(X); 
+    apps_not_downloading(X); sychronization_failures(X).
+outdated_os(X):- phone_freezes(X).
+connectivity_issues(X):- wifi_module_doesnt_work(X).
+
+usual_service(X):- battery_failure(X); side_buttons_failure(X); 
+    full_storage_space(X); outdated_os(X); connectivity_issues(X).
+
+middle_cost_service(X):- charging_port_failure(X); 
+    damaged_camera_lens(X); phone_doesnt_recognize_microsd(X).
+
+expensive_service(X):- charging_port_failure(X), connectivity_issues(X), 
+    phone_doesnt_recognize_microsd(X).
+
+irrepairable(X):- os_failure(X); charging_port_failure(X), 
+    connectivity_issues(X), outdated_os(X), phone_doesnt_recognize_microsd(X).
+
+hardware_is_ok_but_phone_doesnt_work(iphone11).
+
+phone_doesnt_charge(galaxyA30).
+wifi_module_doesnt_work(galaxyA30).
+phone_freezes(galaxyA30).
+microsd_doesnt_work(galaxyA30).
+
+buttons_unresponsive(galaxyJ2).
+
+damaged_charging_port(nokiaG50).
+
+low_battery_life(test).
+phone_is_overheating(test).
+photos_looking_hazy(test).
+app_crashes(test).
+app_freezes(test).
+apps_not_downloading(test).
+sychronization_failures(test).
+
+/* 
+ * irrepairable(X).
+ * irrepairable(iphone11).
+ * 
+ * */

@@ -1,0 +1,340 @@
+public class CompositePerson {
+
+    private String id;
+    private String name;
+    private String gender;
+
+    private List<CompositePerson> relation;
+
+    public CompositePerson(String id, String name, String gender) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        relation = new ArrayList<CompositePerson>();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void add(CompositePerson e) {
+        relation.add(e);
+    }
+
+    public void remove(CompositePerson e) {
+        relation.remove(e);
+    }
+
+    public List<CompositePerson> getRelation(){
+        return relation;
+    }
+
+    @Override
+    public String toString() {
+        return "CompositeType{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
+
+~~~~~~~~~~~~~~~~~~~~~~~
+
+public class Main {
+
+    public static void parent (CompositePerson parent, CompositePerson child){
+
+        if (parent.getRelation().contains(child)){
+
+            System.out.println(parent.getName() + " is a parent of " + child.getName());
+        } else {
+
+            System.out.println(parent.getName() + " is not a parent of " + child.getName());
+        }
+
+    }
+
+    public static void hasChildren (CompositePerson person1){
+
+        if (person1.getRelation().contains(person1.getRelation().get(0))){
+
+            System.out.println(person1.getName() + " has "
+                    + (long) person1.getRelation().size()
+                    + " children");
+        } else {
+
+            System.out.println(person1.getName() + " doesn't have children");
+        }
+
+    }
+
+    public static void mother (CompositePerson mother, CompositePerson child){
+
+        if (mother.getRelation().contains(child)
+                && mother.getGender().equals("Female")){
+
+            System.out.println(mother.getName() + " is a mother of " + child.getName());
+        } else {
+
+            System.out.println(mother.getName() + " is not a mother of " + child.getName());
+        }
+
+    }
+
+    public static void father (CompositePerson father, CompositePerson child){
+
+        if (father.getRelation().contains(child)
+                && father.getGender().equals("Male")){
+
+            System.out.println(father.getName() + " is a father of " + child.getName());
+        } else {
+
+            System.out.println(father.getName() + " is not a father of " + child.getName());
+        }
+
+    }
+
+    public static void siblings (CompositePerson sibling1, CompositePerson sibling2, CompositePerson parent){
+
+        if (parent.getRelation().contains(sibling2)
+                && parent.getRelation().contains(sibling1)
+                && !sibling1.getId().equals(sibling2.getId())){
+
+            System.out.println(sibling1.getName() + " and " + sibling2.getName() + " are siblings");
+        } else {
+
+            System.out.println(sibling1.getName() + " and " + sibling2.getName() + " are not siblings");
+        }
+
+    }
+
+    public static void brother (CompositePerson sibling1, CompositePerson sibling2, CompositePerson parent){
+
+        if (parent.getRelation().contains(sibling2)
+                && parent.getRelation().contains(sibling1)
+                && !sibling1.getId().equals(sibling2.getId())
+                && sibling1.getGender().equals("Male")){
+
+            System.out.println(sibling1.getName() + " is brother to " + sibling2.getName());
+        } else {
+
+            System.out.println(sibling1.getName() + " is not a brother to " + sibling2.getName());
+        }
+
+    }
+
+    public static void sister (CompositePerson sibling1, CompositePerson sibling2, CompositePerson parent){
+
+        if (parent.getRelation().contains(sibling2)
+                && parent.getRelation().contains(sibling1)
+                && !sibling1.getId().equals(sibling2.getId())
+                && sibling1.getGender().equals("Female")){
+
+            System.out.println(sibling1.getName() + " is sister to " + sibling2.getName());
+        } else {
+
+            System.out.println(sibling1.getName() + " is not a sister to " + sibling2.getName());
+        }
+
+    }
+
+    public static void aunt (CompositePerson grandparent, CompositePerson aunt,
+                             CompositePerson auntSibling, CompositePerson child){
+
+        if (grandparent.getRelation().contains(aunt)
+                && grandparent.getRelation().contains(auntSibling)
+                && auntSibling.getRelation().contains(child)
+                && aunt.getGender().equals("Female")){
+
+            System.out.println(child.getName() + " has aunt " + aunt.getName());
+        } else {
+
+            System.out.println(aunt.getName() + " is not an aunt of " + child.getName());
+        }
+
+    }
+
+    public static void uncle (CompositePerson grandparent, CompositePerson uncle,
+                             CompositePerson uncleSibling, CompositePerson child){
+
+        if (grandparent.getRelation().contains(uncle)
+                && grandparent.getRelation().contains(uncleSibling)
+                && uncleSibling.getRelation().contains(child)
+                && uncle.getGender().equals("Male")){
+
+            System.out.println(child.getName() + " has uncle " + uncle.getName());
+        } else {
+
+            System.out.println(uncle.getName() + " is not an uncle of " + child.getName());
+        }
+
+    }
+
+    public static void grandfather (CompositePerson grandfather, CompositePerson parent, CompositePerson child){
+
+        if (grandfather.getRelation().contains(parent)
+                && parent.getRelation().contains(child)
+                && grandfather.getGender().equals("Male")){
+
+            System.out.println(grandfather.getName() + " is a grandfather of " + child.getName());
+        } else {
+
+            System.out.println(grandfather.getName() + " is not a grandfather of " + child.getName());
+        }
+
+    }
+
+    public static void grandmother (CompositePerson grandmother, CompositePerson parent, CompositePerson child){
+
+        if (grandmother.getRelation().contains(parent)
+                && parent.getRelation().contains(child)
+                && grandmother.getGender().equals("Female")){
+
+            System.out.println(grandmother.getName() + " is a grandmother of " + child.getName());
+        } else {
+
+            System.out.println(grandmother.getName() + " is not a grandmother of " + child.getName());
+        }
+
+    }
+
+    public static void grgrandfather (CompositePerson grGrandfather, CompositePerson grandparent,
+                                    CompositePerson parent, CompositePerson child){
+
+        if (grGrandfather.getRelation().contains(grandparent)
+                && grandparent.getRelation().contains(parent)
+                && parent.getRelation().contains(child)
+                && grGrandfather.getGender().equals("Male")){
+
+            System.out.println(grGrandfather.getName() + " is a great grandfather of " + child.getName());
+        } else {
+
+            System.out.println(grGrandfather.getName() + " is not a great grandfather of " + child.getName());
+        }
+
+    }
+
+    public static void grgrandmother (CompositePerson grGrandmother, CompositePerson grandparent,
+                                      CompositePerson parent, CompositePerson child){
+
+        if (grGrandmother.getRelation().contains(grandparent)
+                && grandparent.getRelation().contains(parent)
+                && parent.getRelation().contains(child)
+                && grGrandmother.getGender().equals("Male")){
+
+            System.out.println(grGrandmother.getName() + " is a great grandmother of " + child.getName());
+        } else {
+
+            System.out.println(grGrandmother.getName() + " is not a great grandmother of " + child.getName());
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+
+        CompositePerson jim = new CompositePerson("1", "Jim", "Male");
+        CompositePerson bob = new CompositePerson("2", "Bob", "Male");
+        CompositePerson tom = new CompositePerson("3", "Tom", "Male");
+        CompositePerson jimSr = new CompositePerson("4", "Jim Sr.", "Male");
+
+        CompositePerson pam = new CompositePerson("5", "Pam", "Female");
+        CompositePerson pat = new CompositePerson("6", "Pat", "Female");
+        CompositePerson ann = new CompositePerson("7", "Ann", "Female");
+        CompositePerson jen = new CompositePerson("8", "Jen", "Female");
+
+        pam.add(bob);
+        tom.add(bob);
+
+        bob.add(ann);
+        bob.add(pat);
+        jen.add(pat);
+        jen.add(ann);
+
+        pat.add(jim);
+        jimSr.add(jim);
+
+        parent(pam, bob);
+        parent(tom, bob);
+        parent(bob, ann);
+        parent(bob, pat);
+        parent(jen, pat);
+        parent(jen, ann);
+        parent(pat, jim);
+        parent(jimSr, jim);
+
+        System.out.println();
+
+        mother(pam, bob);
+        father(tom, bob);
+        father(bob, ann);
+        father(bob, pat);
+        mother(jen, ann);
+        mother(jen, pat);
+        mother(pat, jim);
+        father(jimSr, jim);
+
+        System.out.println();
+
+        siblings(ann, pat, bob);
+        sister(ann, pat, bob);
+        brother(ann, pat, bob);
+
+        hasChildren(jimSr);
+        hasChildren(pat);
+        hasChildren(bob);
+
+        aunt(bob, ann, pat, jim);
+
+        grandfather(bob, pat, jim);
+        grgrandfather(tom, bob, pat, jim);
+
+
+        /* код на пролозі
+        female(pam).
+female(pat).
+female(ann).
+
+male(jim).
+male(bob).
+male(tom).
+male(peter).
+
+parent(pam,bob).
+parent(tom,bob).
+parent(bob,ann).
+parent(bob,pat).
+parent(pat,jim).
+parent(bob,peter).
+parent(peter,jim).
+
+mother(X,Y):- parent(X,Y),female(X).
+father(X,Y):- parent(X,Y),male(X).
+haschild(X):- parent(X,_).
+sister(X,Y):- parent(Z,X),parent(Z,Y),female(X),X\==Y.
+brother(X,Y):-parent(Z,X),parent(Z,Y),male(X),X\==Y.
+         */
+
+
+    }
+}

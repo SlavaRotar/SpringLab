@@ -1,0 +1,78 @@
+% День народження
+
+frame(human, slot(comment, "Humans live on Earth")).
+
+frame(bday, slot(comment, "Part of bday")).
+
+frame(cake, slot("On", bday)).
+frame(cake, slot("Height", 15)). % 15cm
+frame(cake, slot("Diameter", 40)).
+frame(cake, slot("Flavor", strawberry)).
+
+frame(strawberry, slot("Type", berry)).
+
+frame(bday_hat, slot("On", bday)).
+frame(bday_hat, slot("Material", cardboard)).
+frame(bday_hat, slot("Type", decorations)).
+
+frame(restaurant, slot("On", bday)).
+frame(restaurant, slot("Name", "Lux")).
+
+frame(child, slot("Is", human)). 
+frame(child, slot("Age below", 12)). 
+
+frame(attendee, slot("Is", child)).
+frame(attendee, slot("On", bday)).
+frame(attendee, slot("Attending party", 'yes')).
+frame(attendee, slot("Brought presents", 'yes')).
+
+frame(celebrant, slot("Is", child)).
+frame(celebrant, slot("On", bday)).
+frame(celebrant, slot("Attending party", 'no')).
+frame(celebrant, slot("Hosting party", 'yes')).
+
+frame(adult, slot("Is", human)). 
+frame(adult, slot("Age above", 18)). 
+
+frame(organiser, slot("Is", adult)).
+frame(organiser, slot("On", bday)).
+frame(organiser, slot("Organising party", 'yes')).
+
+frame("Viktor", slot("Is", organiser)).
+frame("Viktor", slot("Age", 35)).
+frame("Viktor", slot("Gender", male)).
+frame("Viktor", slot("Is father of", "Maria")).
+frame("Viktor", slot("Location", restaurant)).
+frame("Viktor", slot("Bought", cake)).
+
+frame("Sofia", slot("Is", organiser)).
+frame("Sofia", slot("Age", 36)).
+frame("Sofia", slot("Gender", female)).
+frame("Sofia", slot("Is mother of", "Maria")).
+frame("Sofia", slot("Location", restaurant)).
+
+frame("Maria", slot("Is", celebrant)).
+frame("Maria", slot("Age", 8)).
+frame("Maria", slot("Gender", female)).
+frame("Maria", slot("Location", restaurant)).
+frame("Maria", slot("Wears", bday_hat)).
+
+frame("Pavlo", slot("Is", attendee)).
+frame("Pavlo", slot("Age", 9)).
+frame("Pavlo", slot("Gender", male)).
+frame("Pavlo", slot("Has present", /*doll*/barbie)).
+frame("Pavlo", slot("Location", restaurant)).
+
+frame("Olena", slot("Is", attendee)).
+frame("Olena", slot("Age", 8)).
+frame("Olena", slot("Gender", female)).
+frame("Olena", slot("Has present", jigsaw)).
+frame("Olena", slot("Location", restaurant)).
+
+%frame(doll, slot("Name", barbie)).
+
+query(X, slot(Y, Z)):- frame(X, slot(Y, Z)).
+
+query(X, slot(Y, Z)):- frame(X, slot(_, S)), query(S, slot(Y, Z)).
+
+% query("Viktor", slot(Y, Z)).

@@ -1,0 +1,28 @@
+//реалізовано на Java
+
+public class Main {
+
+    // постановка задачі така: є три стрижні (А, Б, В),
+    // треба перемістити вежу повністю з першого стрижня на третій, причому
+    // самі диски нумеруються від найменшого (тобто, 1-2-3)
+
+    static void hanoiTower(int disks, String startPole, String endPole, String middle){
+
+        if (disks == 1){
+
+            System.out.println("Диск " + disks + " з " + startPole + " до " + endPole);
+        } else {
+
+            hanoiTower(disks-1, startPole, middle, endPole);
+
+            System.out.println("Диск " + disks + " з " + startPole + " до " + endPole);
+
+            hanoiTower(disks-1, middle, endPole, startPole);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        hanoiTower(3, "А", "В", "Б");
+    }
+}

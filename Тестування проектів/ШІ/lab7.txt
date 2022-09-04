@@ -1,0 +1,61 @@
+public class Main {
+
+    public static void main(String[] args) {
+
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        Random random = new Random();
+        double[][] rnd = new double[10][2];
+
+        System.out.println("Enter coordinates of x, y");
+        Scanner input = new Scanner(System.in);
+        double x = input.nextDouble();
+        double y = input.nextDouble();
+
+        for (int i = 0; i < 10; i++) {
+
+            for (int j = 0; j < 2; j++) {
+                rnd[i][j] = random.nextDouble() * 10;
+            }
+        }
+
+        System.out.println("Random data: ");
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 2; j++) {
+
+                System.out.println(df.format(rnd[i][j++]) + " | " + df.format(rnd[i][j]));
+            }
+        }
+
+        double xMin = rnd[0][0];
+        double yMin = rnd[0][1];
+        double xClose = 0;
+        double yClose = 0;
+
+        for (int i = 0; i < 10; i++) {
+
+            if (Math.abs(rnd[i][0] - x) < xMin) {
+
+                xMin = rnd[i][0] - x;
+                xClose = rnd[i][0];
+            }
+        }
+
+        for (int i = 0; i < 10; i++) {
+
+            if (Math.abs(rnd[i][1] - y) < yMin) {
+
+                yMin = rnd[i][1] - y;
+                yClose = rnd[i][1];
+            }
+        }
+
+        System.out.println();
+
+        System.out.println("Nearest neighbor: (" + df.format(xClose) + "; "
+                + df.format(yClose) + ")");
+
+        input.close();
+    }
+
+}

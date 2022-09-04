@@ -1,0 +1,47 @@
+% Кімната та меблі
+
+is_a(bed, furniture).
+is_a(single_bed, bed).
+
+is_a(cabinet, furniture).
+is_a(clothes_cabinet, cabinet).
+
+is_a(table, furniture).
+is_a(computer_table, table).
+
+is_a(chair, furniture).
+is_a(armchair, chair).
+
+def(X,Y):- is_a(X,Y).
+def(X,Y):- is_a(Z,Y), def(X,Z).
+
+part(wood, furniture).
+
+part(mattress, bed).
+part(rack, cabinet).
+part(legs, table).
+part(legs, chair).
+part(arms, chair).
+part(X,Y):- def(Y,Z), !, part(X,Z).
+
+use(furniture).
+use(X):- def(X,Y), use(Y).
+
+sleepb(bed).
+sleepb(X):- def(X,Y), sleepb(Y).
+
+store_clothes(clothes_cabinet).
+store_clothes(X):- def(X,Y), store_clothes(Y).
+
+use_computer(computer_table).
+use_computer(X):- def(X,Y), use_computer(Y).
+
+sit(chair).
+sit(X):- def(X,Y), sit(Y).
+
+/*
+def(chair, Q).
+part(Q, furniture).
+part(Q, armchair).
+sit(armchair).
+*/

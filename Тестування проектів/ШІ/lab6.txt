@@ -1,0 +1,79 @@
+public class Main {
+
+    public static void main(String[] args) {
+
+        double BetweenDeg = 0;
+
+        double OutputTemp = 0;
+        
+        double subRatio = 32;
+        double multRatio = 0.5556;
+
+        for (; ; ) {
+
+            boolean TC = false;
+            boolean K = false;
+            boolean TH = false;
+
+            System.out.println("Enter your preferable water temperature");
+            Scanner algorithmInput = new Scanner(System.in);
+            int InputTemp = algorithmInput.nextInt();
+
+            if (InputTemp < 50){
+                break;
+            }
+
+            if (InputTemp > 50 && InputTemp <= 86) {
+                BetweenDeg = InputTemp - subRatio;
+                TC = true;
+            }
+
+            if (InputTemp > 86 && InputTemp <= 98) {
+                BetweenDeg = InputTemp - subRatio;
+
+                TC = true;
+                K = true;
+            }
+
+            if (InputTemp > 98 && InputTemp <= 105) {
+                BetweenDeg = InputTemp - subRatio;
+
+                K = true;
+            }
+
+            if (InputTemp > 105 && InputTemp <= 200) {
+                BetweenDeg = InputTemp - subRatio;
+
+                TH = true;
+            }
+
+            if (InputTemp > 200){
+                break;
+            }
+
+            OutputTemp = BetweenDeg * multRatio;
+
+            System.out.println("Temperature in C = " + OutputTemp);
+
+            if (TC == true) {
+                System.out.println("This is too cold");
+            }
+
+            if (TC == true && K == true) {
+                System.out.println("This is not hot enough, but still comfortable");
+            }
+
+            if (K == true) {
+                System.out.println("This is good");
+                break;
+            }
+
+            if (TH == true) {
+                System.out.println("This is too hot");
+            }
+
+            System.out.println();
+
+        }
+    }
+}
