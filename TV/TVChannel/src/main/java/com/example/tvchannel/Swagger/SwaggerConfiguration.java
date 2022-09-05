@@ -2,6 +2,8 @@
 
 package com.example.tvchannel.Swagger;
 
+import io.swagger.annotations.Contact;
+import io.swagger.annotations.Info;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
@@ -28,7 +30,7 @@ public class SwaggerConfiguration {
                 .build();
     }
 
-    @Bean
+/*    @Bean
     public OpenAPI authorOpenAPI(){
 
         return new OpenAPI()
@@ -42,6 +44,6 @@ public class SwaggerConfiguration {
                                         .name("Yarik")
                                         .url("http://localhost:1212"))
                 );
-    }
+    }*/
 }
 
