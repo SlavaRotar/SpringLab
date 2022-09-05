@@ -41,6 +41,9 @@ public class EmployeeController {
 
     @PostMapping("/update")
     public Employee update(@RequestBody Employee id, @RequestBody Employee name, @RequestBody Employee position, @RequestBody Employee dob){
-    return null;
+        repository.save(name);
+        repository.save(position);
+        repository.save(dob);
+    return new Employee();
     }
 }

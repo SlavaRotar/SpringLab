@@ -44,7 +44,7 @@ public class CartoonsController {
     @PostMapping("/update")
     public Cartoons update(@RequestBody Cartoons id, @RequestBody Cartoons name){
         repository.save(name);
-        return name;
+        return new Cartoons();
     }
 
 }

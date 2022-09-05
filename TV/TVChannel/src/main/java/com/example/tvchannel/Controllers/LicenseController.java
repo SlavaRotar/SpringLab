@@ -42,6 +42,9 @@ public class LicenseController {
 
     @PostMapping("/update")
     public License update(@RequestBody License id, @RequestBody License name, @RequestBody License date, @RequestBody License licenseDate) {
-        return null;
+        repository.save(name);
+        repository.save(date);
+        repository.save(licenseDate);
+        return new License();
     }
 }

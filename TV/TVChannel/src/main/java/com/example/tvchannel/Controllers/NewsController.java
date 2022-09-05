@@ -41,6 +41,9 @@ public class NewsController {
 
         @PostMapping("/update")
         public News update(@RequestBody News id, @RequestBody News name, @RequestBody News day, @RequestBody News airtime) {
-            return null;
+            repository.save(name);
+            repository.save(day);
+            repository.save(airtime);
+            return new News();
         }
 }

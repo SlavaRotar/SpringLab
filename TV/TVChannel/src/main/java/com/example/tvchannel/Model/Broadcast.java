@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 
 import javax.persistence.*;
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 @Schema(description = "Broadcast")

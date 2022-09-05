@@ -1,3 +1,4 @@
+/*
 
 
 package com.example.tvchannel.Swagger;
@@ -30,7 +31,7 @@ public class SwaggerConfiguration {
                 .build();
     }
 
-/*    @Bean
+    @Bean
     public OpenAPI authorOpenAPI(){
 
         return new OpenAPI()
@@ -44,6 +45,7 @@ public class SwaggerConfiguration {
                                         .name("Yarik")
                                         .url("http://localhost:1212"))
                 );
-    }*/
+    }
 }
 
+*/

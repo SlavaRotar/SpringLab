@@ -41,6 +41,7 @@ public class DOWController {
 
     @PostMapping("/update")
     public DOW update(@RequestBody DOW id, @RequestBody DOW name) {
-        return repository.save(name);
+        repository.save(name);
+        return new DOW();
     }
 }
