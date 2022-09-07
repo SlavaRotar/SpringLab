@@ -1,13 +1,9 @@
-/*
 
 
 package com.example.tvchannel.Swagger;
 
 import io.swagger.annotations.Contact;
 import io.swagger.annotations.Info;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Contact;
-import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -17,7 +13,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@EnableSwagger2
+/*@EnableSwagger2*/
 public class SwaggerConfiguration {
 
     //http://localhost:1212/swagger-ui/
@@ -26,12 +22,12 @@ public class SwaggerConfiguration {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex("/.*"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.tvchannel.Swagger.SwaggerConfiguration"))
+                .paths(PathSelectors.any())
                 .build();
     }
 
-    @Bean
+/*    @Bean
     public OpenAPI authorOpenAPI(){
 
         return new OpenAPI()
@@ -45,7 +41,6 @@ public class SwaggerConfiguration {
                                         .name("Yarik")
                                         .url("http://localhost:1212"))
                 );
-    }
+    }*/
 }
 
-*/
